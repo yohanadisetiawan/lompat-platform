@@ -1,10 +1,13 @@
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     Dzakir.vy = -190
+    music.jumpUp.play()
 })
 info.onCountdownEnd(function () {
+    music.spooky.playUntilDone()
     game.over(false, effects.dissolve)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
+    music.thump.playUntilDone()
     game.over(true, effects.bubbles)
 })
 let Dzakir: Sprite = null
@@ -22,3 +25,6 @@ scene.cameraFollowSprite(Dzakir)
 controller.moveSprite(Dzakir, 100, 0)
 Dzakir.ay = 350
 info.startCountdown(10)
+forever(function () {
+    music.playMelody("C E C E F G G B ", 120)
+})
